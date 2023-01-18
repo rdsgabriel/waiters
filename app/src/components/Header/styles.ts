@@ -14,11 +14,11 @@ export const OrderHeader = styled.View`
 `;
 
 export const Table = styled.View`
-  padding: 16px;
+  padding: 15px;
   background: #fff;
   border: 1px solid rgba(204, 204, 204, 0.3);
-  border-radius: 8px;
-  margin-top: 24px;
+  border-radius: 16px;
+  margin-top: 16px;
   flex-direction: row;
 `;
 

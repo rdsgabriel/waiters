@@ -84,14 +84,16 @@ export function Cart({cartItems, onAdd, onDecrement, onConfirmOrder, selectedTab
               </ProductContainer>
 
               <Actions>
-                <TouchableOpacity style={{marginRight: 20}}
+                <TouchableOpacity onPress={() => onDecrement(cartItem.product)}>
+                  <MinusCircle/>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{marginLeft: 20}}
                   onPress = {() => onAdd(cartItem.product)}
                 >
                   <PlusCircle/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => onDecrement(cartItem.product)}>
-                  <MinusCircle/>
-                </TouchableOpacity>
+
               </Actions>
             </Item>
 

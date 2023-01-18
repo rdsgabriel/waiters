@@ -6,6 +6,7 @@ const isAndroid = Platform.OS === 'android';
 export const CategoryContainer = styled.TouchableOpacity `
 align-items: center;
 margin-left: 24px;
+
 `;
 
 export const Icon = styled.View `

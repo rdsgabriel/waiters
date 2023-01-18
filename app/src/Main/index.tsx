@@ -42,7 +42,7 @@ export function Main() {
 
     setIsLoadingProducts(true);
     const {data} = await api.get(route);
-    await new Promise (resolve => setTimeout (resolve, 800));
+    await new Promise (resolve => setTimeout (resolve, 100));
     setProducts(data);
     setIsLoadingProducts(false);
   }
