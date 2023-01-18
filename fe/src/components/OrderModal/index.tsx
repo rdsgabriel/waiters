@@ -9,9 +9,11 @@ interface OrderModalProps {
   onClose: () => void;
   onCancelOrder: () => Promise<void>;
   isLoading: boolean;
+  onChangeOrderStatus: () => void;
 }
 
-export function OrderModal({visible, order, onClose, onCancelOrder, isLoading}: OrderModalProps) {
+export function OrderModal({visible, order, onClose,
+  onCancelOrder, isLoading, onChangeOrderStatus}: OrderModalProps) {
   if(!visible || !order){
     return null;
   }
@@ -50,7 +52,7 @@ export function OrderModal({visible, order, onClose, onCancelOrder, isLoading}: 
           <div className="order-items">
             {order.products.map(({_id, product, quantity}) => (
               <div className="item" key={_id}>
-                <img src={`http://localhost:3001/uploads/${product.imagePath}`} alt={product.name}
+                <img src={`http://192.168.1.64:3001/uploads/${product.imagePath}`} alt={product.name}
                   width ="56"
                   height="28.51"
                 />
@@ -72,13 +74,21 @@ export function OrderModal({visible, order, onClose, onCancelOrder, isLoading}: 
         </OrderDetails>
 
         <Actions>
-          <button type='button' className='primary' disabled={isLoading}>
-            <span>👩‍🍳</span>
-            <strong>Iniciar Produção</strong>
-          </button>
+          {order.status !== 'DONE' && (
+            <button type='button' className='primary' disabled={isLoading} onClick={onChangeOrderStatus}>
+              <span>
+                {order.status === 'WAITING' && '👩‍🍳'}
+                {order.status === 'IN_PRODUCTION' && '✅'}
+              </span>
+              <strong>
+                {order.status === 'WAITING' && 'Iniciar Produção'}
+                {order.status === 'IN_PRODUCTION' && 'Concluir Pedido'}
+              </strong>
+            </button>
+          )}
 
           <button type='button' className='secondary' onClick={onCancelOrder} disabled={isLoading}>
-          Cancelar Pedido
+            {order.status === 'DONE' ? 'Entregue' : 'Cancelar Pedido'}
           </button>
         </Actions>
       </ModalBody>
