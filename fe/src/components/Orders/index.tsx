@@ -15,6 +15,8 @@ export function Orders () {
       transports: ['websocket'],
     });
 
+    console.log('useEffect aqui');
+
     socket.on('orders@new', (order) => {
       setOrders(prevState => prevState.concat(order));
     });
