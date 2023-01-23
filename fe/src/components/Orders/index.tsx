@@ -20,6 +20,12 @@ export function Orders () {
     socket.on('orders@new', (order) => {
       setOrders(prevState => prevState.concat(order));
     });
+
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('pong');
+    };
   }, []);
 
   useEffect(() => {
